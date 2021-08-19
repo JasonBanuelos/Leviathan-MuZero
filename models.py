@@ -147,7 +147,7 @@ class MuZeroFullyConnectedNetwork(AbstractNetwork):
 
     # The representation function, returns the hidden/encoded state that the prediction and dynamics functions can understand and use.
     def representation(self, observation):
-        # most of this is ooga booga voodoo magic, talked about in Appendix G (Training) of the MuZero paper.
+        # most of this is voodoo magic, talked about in Appendix G (Training) of the MuZero paper.
         encoded_state = self.representation_network(observation.view(observation.shape[0], -1))  # So I had to do a ton of ctrl-clicking to figure out what the observations is supposed to be, but it seems to be defined by the game file of whatever game muzero is playing. Magic incantation for now.
         # Scale encoded state between [0, 1] (See the training appendix of the MuZero paper)
         min_encoded_state = encoded_state.min(1, keepdim=True)[0]  # Basically, returns the minimum value of all elements in the input tensor. A little different though because of the arguments, take a look: https://pytorch.org/docs/stable/generated/torch.min.html

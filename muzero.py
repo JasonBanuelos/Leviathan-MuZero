@@ -485,7 +485,7 @@ def load_model_menu(muzero, game_name):
     muzero.load_model(checkpoint_path=checkpoint_path, replay_buffer_path=replay_buffer_path)
 
 
-# This is how you declare main in python. This is the part of the file that actually runs the program. Kind of weird that the most important part of the code is at the bottom of the file, but I guess that's so the functions & classes and stuff that the program uses are compiled before the program starts.
+### This is how you declare main in python. This is the part of the file that actually runs the program. Kind of weird that the most important part of the code is at the bottom of the file, but I guess that's so the functions & classes and stuff that the program uses are compiled before the program starts.
 if __name__ == "__main__":
     # If you define the game you want it to play, then it skips the menu and gets straight to training itself to play whatever you want.
     # So if you enter something in the terminal like "python muzero.py cartpole" then it trains it to play cartpole.
@@ -583,6 +583,6 @@ if __name__ == "__main__":
                 muzero = MuZero(game_name, best_hyperparameters) # FIXME: So does this replace the MuZero we use to play this game permanently forever? Or just for this one time we run the program?
             else:
                 print("ᛊieg der ᛊonne")  # Hilariously, his "Done" print statement doesn't work because it's after the break. Like I said earlier, I learned the hard way in skool that order matters in code.
-                break  # Alright, once you get how this works, go back up to MuZero class
+                break  ### Alright, once you get how this works, go back up to MuZero class
 
-    ray.shutdown()  # Wait, did ray even get started in the main function?
+    ray.shutdown()

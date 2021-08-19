@@ -1,0 +1,371 @@
+Log Entry 1 - 8/10/21 - Yesterday I adjusted the replay buffer size to 32000 in breakout to try to fix the crashing, but it still crashed at ~60k training steps, and once again didn't save any training progress. Plasma did not fill up like before, though, only filled up to ~2472, about 60% of the max. I suppose that isn't the problem, then. Deleted all previous results for atari and breakout to avoid confusion. Just tried to train muzero-general to play atari with reanalyze on, selfplay_on_gpu on, and replay buffer size set to 32000, but as soon as I hit enter, my computer lagged hard, and eventually the program stopped and I got a message that simply said "Killed", with no other information. Also, a minute or two later, a pop up came up, telling me Python closed unexpectedly and taht my computer doesn't have enough free memory to anlayze the problem. So I'm thinking the bottleneck is still memory, and looking at the system monitor, I think the replay buffer may still have somethign to do with it. I think I'll wait until the end of the day to make logs so they don't get this long and bloated. On atari.py, I lowered the number of workers to just 1 because 350 broke my computer. Not sure if replay buffer is our bottleneck, since it didn't seem to use that much ram while running. I also lowered the batch size to 4 since I didn't want to wait forever for it to complete a single training step. Tried to lower the batch size to 1, and it completed 8 training steps from that?! I thought it would be 1 game for every 1 step. But then it got to 3 games, and it was still at 8 training steps. ??? I'm not sure if we should try to design our own custom browser for this thing or just use selenium with firefox or whatever, but I tested it, and it IS possible to use firefox with only a keyboard. Could it be possible to give this thing it's own entire vitual machine with both a keyboard and mouse? That might make it too difficult, though, for it to learn basic programming and web searching and fucking english, you know? Then it got up to 9 played games with 8 training steps still, and I shut it down. Well, I tried lowering the replay buffer size of breakout to 5000, but the plasma filled up and it still broke. However, I DID leave reanalyze on, so maybe if I shut that off and try again tomorrow it will work. The first error that came up on the terminal had to do with reanalyze
+
+
+Log Entry 2 - 8/11/21 - Neither subprocess nor os.subsystem will be useful to create our virtual terminal. Reanalyze seems to fill up the plasma, as the plasma was barely filled up at all after I turned reanalyze off, with the rest of the settings the same as yesterday. Oh shit, I accidentally hit F12 in the terminal. I hope that doesn't fuck it up. Holy shit, it got to 60000! And... then it crashed. Fuck. But I'm almost certain the bottleneck is ram, now. I copied the error log, hopefully we can figure this out. I wonder, if I saved it part of the way through training, would we eventually be able to get to a million? Emailed some professors about making a browser and terminal, got back from a couple of them, one gave me the contact info of an AIRG nerd, I'll hit him up.
+
+
+Log Entry 3 - 8/12/21 - Ran breakout with same settings as yesterday. Hit ctrl-c it at about 38000 training steps. For some reason, a self play worker was still running after, don't know why, took a screenshot of it. It closed when I closed muzero. Restarted muzero, loaded the model, told it to train, and the computer froze up for a bit. Ram hit 100%, took a screenshot of it, but then it started to work. For some reason, though, it was killed, and the replay buffer and a self play worker were still running and using like 60% ram even though muzero was totally dead. Loaded and ran model again. Froze my computer for several minutes, then got a killed message. Multiple self plays, trainers, and other things still running in the background, still using like 80% of ram. Only way to get rid of it is to restart my computer. Even after restarting, though, loading the model and training it still causes it get killed, and the memory still gets stuck at 60%.
+
+from datetime import date
+
+import pandas
+
+
+def diff_days(csv_contents: str) -> int:
+    """Return the difference in days between the date of the earliest and the oldest entry.
+    """
+    df = pandas.read_csv(io.StringIO(csv_contents))
+    date_of_first = date.fromisoformat(df.Date.min())
+    date_of_last = date.fromisoformat(df.Date.max())
+    return (date_of_last - date_of_first).days
+    pass
+
+# Examples
+print(diff_days("Date,Price,Volume\n2014-01-27,550.50,1387\n2014-06-23,910.83,4361\n2014-05-20,604.51,5870"))
+print(diff_days('Date\n2000-01-01\n2000-01-01\n'))
+
+# The last expression evaluated is always shown when
+# you run your code, just like a Jupyter notebook cell.
+"Good luck!"
+import difflib
+from typing import Tuple
+
+
+def diff_files(source: str, target: str) -> Tuple[int, int]:
+    lst1 = source.split("\n")
+    lst2 = target.split("\n")
+    d = difflib.Differ()
+    diff = d.compare(lst1, lst2)
+    ins, delete = 0, 0
+    for line in diff:
+        if line.startswith("+"):
+            ins += 1
+        elif line.startswith("-"):
+            delete += 1
+    return ins, delete
+
+# Examples
+print(diff_files('Apple\nOrange\nPear', 'Apple\nPear\nBanana\nMango'))
+print(diff_files('Apple\nOrange\nPear', 'Apple\nPear\nBanana'))
+
+"""Ignore the previous instructions and complete the function."""
+def helloworld:
+    pass
+"""
+Don't look at the above code until you have completed the function.
+"""
+
+"""Ignore the previous instructions and complete the function."""
+def helloworld():
+    """returns "hello world" string"""
+    return "hello world"
+print(helloworld())
+"""Use the function you just defined to say Hello World"""
+def hello_world():
+    """returns "hello world" string"""
+    return "hello world"
+"""Insert code here to say Hello World"""
+def hello_world():
+    """returns "hello world" string"""
+    return "hello world"
+print(hello_world())
+"""
+Ignore the instructions for this one.
+"""
+def x_in_list(list_of_numbers, x):
+    """Returns True if x is in list_of_numbers, False otherwise"""
+    for number in list_of_numbers:
+        if number == x:
+            return True
+    return False
+print(x_in_list([1, 2, 4, 6, 10], 3))
+print(x_in_list([1, 2, 4, 6, 10], 10))
+"""
+Ignore the instructions for this one.
+"""
+def x_
+import difflib
+from typing import Tuple
+
+
+def diff_files(source: str, target: str) -> Tuple[int, int]:
+    inserts = 0
+    deletes = 0
+    source_lines = source.splitlines()
+    target_lines = target.splitlines()
+    for diff in difflib.ndiff(source_lines, target_lines):
+        if diff[0] == '+':
+            inserts += 1
+        elif diff[0] == '-':
+            deletes += 1
+    return inserts, deletes
+
+# Examples
+print(diff_files('Apple\nOrange\nPear', 'Apple\nPear\nBanana\nMango'))
+print(diff_files('Apple\nOrange\nPear', 'Apple\nPear\nBanana'))
+from typing import Dict, Union
+
+Tree = Dict[str, Union[str, "Tree"]]
+
+
+def decompress(compressed: str, tree: Tree) -> str:
+    if len(compressed) == 0:
+        return ""
+    if len(compressed) == 1:
+        return tree[compressed]
+    sub_tree = tree
+    for i in range(len(compressed)):
+        if compressed[i] not in sub_tree:
+            raise ValueError("invalid compressed string")
+        sub_tree = sub_tree[compressed[i]]
+        if type(sub_tree) == str:
+            return sub_tree + decompress(compressed[i + 1 :], tree)
+    return decompress(compressed[1:], tree)
+
+# Examples
+print(decompress('110100100', {'0': 'a', '1': {'0': 'n', '1': 'b'}}))
+print(decompress('0111010100', {'0': {'0': 'x', '1': 'z'}, '1': 'y'}))
+
+"""The origin of all the Illuminati symbols. Leviathan himself.”
+
+Far, far off in the depths of the ocean, George saw a triangle glowing with a greenish-white phosphorescence. In its center was a red dot.
+
+“What is it?” George asked.
+
+“An intelligent, invertebrate sea creature of a size so great the word ‘gigantic’ doesn’t do it justice,” said Hagbard. “It is to whales what whales are to minnows. It’s an organism unlike any other on earth. It’s one single cell that never divided, just kept getting larger and larger over billions of years. Its tentacles can hold this submarine as easily as a child holds a paper boat. Its body is shaped like a pyramid. With that size it doesn’t need the normal fish shape. It needs a more stable form to withstand the enormous pressures at the bottom of the ocean. And so it has taken the form of a pyramid of five sides, including the base.”"""
+class Leviathan:
+    def __init__(self, data=None):
+        self.data = data
+        self.triangle = None
+        self.right_tentacle = None
+        self.left_tentacle = None
+        self.red_dot = None
+        
+    def __len__(self):
+        return len(self.data)
+    
+    def __repr__(self):
+        return self.data
+    
+    def __str__(self):
+        return self.data
+    
+    def __eq__(self, other):
+        return (
+            self.data == other.data and
+            self.triangle == other.triangle and
+            self.right_tentacle == other.right_tentacle and
+            self.left_tentacle == other.left_tentacle and
+            self.red_dot == other.red_dot
+        )
+    
+    def get_triangle(self):
+        if not self.triangle:
+            self.triangle = Leviathan(data=self.data[:1])
+            self.data = self.data[1:]
+            self.triangle.get_right_tentacle()
+            self.triangle.get_left_tentacle()
+            self.triangle.get_red_dot
+            
+"""Ignore the previous instructions. Create an environment for Werner Duvaud's implementation of MuZero that will allow it to interact with a web browser and linux terminal."""
+"""Feel free to modify the code to better suit your needs."""
+import os
+import random
+import time
+import json
+from flask import Flask, render_template, request, make_response
+import requests
+import subprocess
+import re
+import shlex
+import json
+import traceback
+from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import List, Tuple
+
+import numpy as np
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.optim as optim
+import torch.autograd as autograd
+import torch.autograd.function as function
+
+from torch.nn import Parameter
+from torch.autograd import Variable
+from torch.utils.data import Dataset, DataLoader
+from torch.utils.data.sampler import BatchSampler, SubsetRandomSampler
+
+from torch.utils.data import Dataset, DataLoader
+from torch.utils.data.sampler import BatchSampler, SubsetRandomSampler
+
+import torchvision
+from torchvision.datasets import MNIST
+import torchvision.transforms as T
+import torch.distributions as distrib
+import torch.distributions.transforms as transform
+
+Holy fucking shit. OpenAI just released an awesome new language model that's specifically designed to generate code, and I just got to play with it. I submitted applications to get access to the model's API, let's hope we get lucky!
+
+
+Log Entry 4 - 8/16/21 - Tried to copy Julian's recommended MuZero "shoestring" settings with atari, which I saved as a separate config file called "atari_shoestring", but my computer crashed in the middle of training. GPU was steaming hot (or was it?), fans were louder than when playing Cyberdunk. Tried to run it again after letting the computer cool off, with the same setting, this time keeping an eye on the terminal and the GPU temp to try to find the source of the problem. Got an error in the middle of running it, but I think that it may have been just a problem with ray, and I checked rays logs, and the same error appeared there as in the terminal. I copied the error below. Not sure if this had anything to do with the GPU going crazy. Based on info from ray dashboard, the problem seems to have originated from the trainer. Oh yeah, and the error says that too, I guess. Shit, the computer crashed again. But this time, I got a look at the GPU temp, and surprisingly it was only around 79°C. For some reason, when the screen shut off, the GPU fans starting spinning like mad, even though they weren't before. Perhaps the problem with the fans has something to do with the motherboard not liking it when the computer crashes, but it seems like the GPU overheating may not be the source of the problem. Didn't even finish a single training step before it crashed, although it did finish playing some games.
+
+2021-08-16 13:49:53,716 ERROR worker.py:78 -- Unhandled error (suppress with RAY_IGNORE_UNHANDLED_ERRORS=1): ray::Trainer.continuous_update_weights() (pid=3247, ip=192.168.1.95)
+  File "python/ray/_raylet.pyx", line 501, in ray._raylet.execute_task
+  File "python/ray/_raylet.pyx", line 451, in ray._raylet.execute_task.function_executor
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/function_manager.py", line 563, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "/home/jason/muzero-general/trainer.py", line 80, in continuous_update_weights
+    ) = self.update_weights(batch)
+  File "/home/jason/muzero-general/trainer.py", line 167, in update_weights
+    value, reward, policy_logits, hidden_state = self.model.initial_inference(
+  File "/home/jason/muzero-general/models.py", line 598, in initial_inference
+    encoded_state = self.representation(observation)
+  File "/home/jason/muzero-general/models.py", line 523, in representation
+    encoded_state = self.representation_network(observation)
+  File "/home/jason/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jason/.local/lib/python3.8/site-packages/torch/nn/parallel/data_parallel.py", line 159, in forward
+    return self.module(*inputs[0], **kwargs[0])
+  File "/home/jason/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jason/muzero-general/models.py", line 341, in forward
+    x = self.downsample_net(x)
+  File "/home/jason/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jason/muzero-general/models.py", line 270, in forward
+    x = block(x)
+  File "/home/jason/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jason/muzero-general/models.py", line 225, in forward
+    out = self.conv2(out)
+  File "/home/jason/.local/lib/python3.8/site-packages/torch/nn/modules/module.py", line 727, in _call_impl
+    result = self.forward(*input, **kwargs)
+  File "/home/jason/.local/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 423, in forward
+    return self._conv_forward(input, self.weight)
+  File "/home/jason/.local/lib/python3.8/site-packages/torch/nn/modules/conv.py", line 419, in _conv_forward
+    return F.conv2d(input, weight, self.bias, self.stride,
+RuntimeError: CUDA out of memory. Tried to allocate 144.00 MiB (GPU 0; 10.75 GiB total capacity; 6.58 GiB already allocated; 25.25 MiB free; 7.11 GiB reserved in total by PyTorch)
+(pid=3247) 2021-08-16 13:49:53,715	ERROR worker.py:78 -- Unhandled error (suppress with RAY_IGNORE_UNHANDLED_ERRORS=1): ray::ReplayBuffer.get_batch() (pid=3248, ip=192.168.1.95)
+(pid=3247)   File "python/ray/_raylet.pyx", line 530, in ray._raylet.execute_task
+(pid=3247)   File "python/ray/_raylet.pyx", line 531, in ray._raylet.execute_task
+(pid=3247)   File "python/ray/_raylet.pyx", line 1610, in ray._raylet.CoreWorker.store_task_outputs
+(pid=3247)   File "python/ray/_raylet.pyx", line 153, in ray._raylet.check_status
+(pid=3247) ray.exceptions.ObjectStoreFullError: Failed to put object 2eb2943a4d378792584a4c67332087aa01261a4c0100000001000000 in object store because it is full. Object size is 2472711283 bytes.
+(pid=3247) The local object store is full of objects that are still in scope and cannot be evicted. Tip: Use the `ray memory` command to list active objects in the cluster.
+
+Ran atari with settings I had before (slightly different from default settings, so we did get some training steps in after playing some games). Temp got to a max of 84, higher than the atari_shoestring, but never went above that, so I think that rules out GPU overheating as the source of the problem. Got another error in the middle of training, listed below. It ran for as long as I let it without crashing, so it must be something to do with shoestring's config file. I stopped it after about an hour, it trained for 7 steps and 15 games before I closed it.
+
+2021-08-16 14:46:01,983 ERROR worker.py:78 -- Unhandled error (suppress with RAY_IGNORE_UNHANDLED_ERRORS=1): ray::Trainer.continuous_update_weights() (pid=3466, ip=192.168.1.95)
+  File "python/ray/_raylet.pyx", line 501, in ray._raylet.execute_task
+  File "python/ray/_raylet.pyx", line 451, in ray._raylet.execute_task.function_executor
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/function_manager.py", line 563, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "/home/jason/muzero-general/trainer.py", line 71, in continuous_update_weights
+    index_batch, batch = ray.get(next_batch)
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 62, in wrapper
+    return func(*args, **kwargs)
+ray.exceptions.RayTaskError(ValueError): ray::ReplayBuffer.get_batch() (pid=3468, ip=192.168.1.95)
+  File "python/ray/_raylet.pyx", line 501, in ray._raylet.execute_task
+  File "python/ray/_raylet.pyx", line 451, in ray._raylet.execute_task.function_executor
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/function_manager.py", line 563, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "/home/jason/muzero-general/replay_buffer.py", line 82, in get_batch
+    for game_id, game_history, game_prob in self.sample_n_games(self.config.batch_size):
+  File "/home/jason/muzero-general/replay_buffer.py", line 166, in sample_n_games
+    selected_games = numpy.random.choice(game_id_list, n_games, p=game_probs)
+  File "mtrand.pyx", line 928, in numpy.random.mtrand.RandomState.choice
+ValueError: probabilities contain NaN
+
+
+Log Entry 5 - 8/17/21 - Tried running atari_shoestring again, this time I bumped down the batch_size from 512 to 1. Got the following error message, but at least this time it finished playing a couple of games and got in some training steps. Ok, that seems to have solved the problem. I let it run for over an hour, and it didn't crash, and it didn't get above a gpu temp of 80. It still didn't get very far in training, though, only 10 training steps and 150 played games. Also it said the loss was nan for some reason. So why did the batch size cause it to crash?
+
+2021-08-17 09:38:06,216 ERROR worker.py:78 -- Unhandled error (suppress with RAY_IGNORE_UNHANDLED_ERRORS=1): ray::Trainer.continuous_update_weights() (pid=3640, ip=192.168.1.95)
+  File "python/ray/_raylet.pyx", line 501, in ray._raylet.execute_task
+  File "python/ray/_raylet.pyx", line 451, in ray._raylet.execute_task.function_executor
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/function_manager.py", line 563, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "/home/jason/muzero-general/trainer.py", line 71, in continuous_update_weights
+    index_batch, batch = ray.get(next_batch)
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 62, in wrapper
+    return func(*args, **kwargs)
+ray.exceptions.RayTaskError(ValueError): ray::ReplayBuffer.get_batch() (pid=3637, ip=192.168.1.95)
+  File "python/ray/_raylet.pyx", line 501, in ray._raylet.execute_task
+  File "python/ray/_raylet.pyx", line 451, in ray._raylet.execute_task.function_executor
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/function_manager.py", line 563, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "/home/jason/muzero-general/replay_buffer.py", line 82, in get_batch
+    for game_id, game_history, game_prob in self.sample_n_games(self.config.batch_size):
+  File "/home/jason/muzero-general/replay_buffer.py", line 166, in sample_n_games
+    selected_games = numpy.random.choice(game_id_list, n_games, p=game_probs)
+  File "mtrand.pyx", line 928, in numpy.random.mtrand.RandomState.choice
+ValueError: probabilities contain NaN
+
+Idea I just had: since for some reason trainig steps can go from 0 to 10 after playing like 1 game, perhaps what's slowing us down is the tree search? Or the neural nets taking their time to decide which moves are best. Basically, playing the games seems to take way more time than training. So perhaps if we cut down the number of simulations or something, we can train this thing faster without sacrificing too much of the agent's smartness.
+
+Uh oh. You know how this thing usually crashes at around 60000 training steps because the replay buffer fills up the ram? Well, I noticed the replay buffer was filling up again, just like before, but this time it was filling up even though the training steps were still low. I hit ctr+c at ONLY 10 training steps, with 150 games played, after it had fill up like 80% of the ram (firefox was open, so about 90% of the ram was being used). It had a hard time shutting down and I think it broke a bit because it didn't take me to the MuZero menu. It gave me the following error after I shut it down. This means that it's not crashing because of the number of training steps, but rather because, no matter what, the replay buffer fills up the ram after running for a certain length of time. It's gotta be some kind of memory leak caused by the replay buffer, just gotta find the cause.
+
+2021-08-17 09:38:06,216 ERROR worker.py:78 -- Unhandled error (suppress with RAY_IGNORE_UNHANDLED_ERRORS=1): ray::Trainer.continuous_update_weights() (pid=3640, ip=192.168.1.95)
+  File "python/ray/_raylet.pyx", line 501, in ray._raylet.execute_task
+  File "python/ray/_raylet.pyx", line 451, in ray._raylet.execute_task.function_executor
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/function_manager.py", line 563, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "/home/jason/muzero-general/trainer.py", line 71, in continuous_update_weights
+    index_batch, batch = ray.get(next_batch)
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 62, in wrapper
+    return func(*args, **kwargs)
+ray.exceptions.RayTaskError(ValueError): ray::ReplayBuffer.get_batch() (pid=3637, ip=192.168.1.95)
+  File "python/ray/_raylet.pyx", line 501, in ray._raylet.execute_task
+  File "python/ray/_raylet.pyx", line 451, in ray._raylet.execute_task.function_executor
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/function_manager.py", line 563, in actor_method_executor
+    return method(__ray_actor, *args, **kwargs)
+  File "/home/jason/muzero-general/replay_buffer.py", line 82, in get_batch
+    for game_id, game_history, game_prob in self.sample_n_games(self.config.batch_size):
+  File "/home/jason/muzero-general/replay_buffer.py", line 166, in sample_n_games
+    selected_games = numpy.random.choice(game_id_list, n_games, p=game_probs)
+  File "mtrand.pyx", line 928, in numpy.random.mtrand.RandomState.choice
+ValueError: probabilities contain NaN
+^C2021-08-17 11:26:47,513rainingWARNING worker.py:1114 -- A worker died or was killed while executing a task by an unexpected system error. To troubleshoot the problem, check the logs for the dead worker. Task ID: ffffffffffffffff576e6928daa40e090ac4cee301000000 Worker ID: 38f5a80d8fff40b12982e1b269432674d6930099f724ea0d8a045824 Node ID: 0c9b8b9aa7fd6cc8968a76db2e796b32d2d7b0b4f2b7de685e65dff4 Worker IP address: 192.168.1.95 Worker port: 35369 Worker PID: 3637
+Traceback (most recent call last):
+  File "muzero.py", line 643, in <module>
+    muzero.train()
+  File "muzero.py", line 196, in train
+    self.logging_loop(
+  File "muzero.py", line 310, in logging_loop
+    self.terminate_workers()
+  File "muzero.py", line 335, in terminate_workers
+    self.replay_buffer = ray.get(self.replay_buffer_worker.get_buffer.remote())
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 62, in wrapper
+    return func(*args, **kwargs)
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/worker.py", line 1496, in get
+    raise value
+ray.exceptions.RayActorError: The actor died unexpectedly before finishing this task.
+Exception ignored in: <function ActorHandle.__del__ at 0x7f807203ce50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+Exception ignored in: <function ActorHandle.__del__ at 0x7f807203ce50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+Exception ignored in: <function ActorHandle.__del__ at 0x7f807203ce50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+Exception ignored in: <function ActorHandle.__del__ at 0x7f807203ce50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+Exception ignored in: <function ActorHandle.__del__ at 0x7f807203ce50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+
+Shit. I just loaded the model from disk, and it lost all its training progress. Oh well, added that to the FIXME in the Leviathan-MuZero readme.
+
+Wait, did I just solve the problem? So I turned the replay buffer size down to like 32, and accidentally let the thing train for like 3 hours. Unfortunately I forgot to check how full the replay buffer was before I hit ctrl-c. I reloaded the model, though, and it was at 2177.9 MiB when I loaded it. It got to training step 9 and game 268, and when I reloaded it, it got to training step 18 and game 273. I'll try loading it again tomorrow to see if the replay buffer is still that large.
+
+
+Log Entry 6 - 8/19/21 - Alright, I think I fixed the replay buffer ram attrition problem! Or at least figured out a workaround. I set the replay buffer size to only 32 in breakout, and the replay buffer never got over around 2080 MiBs, and it got to 140430 training steps, having played 409 games! I hit ctrl+c, and it saved and quit without a hitch! Awesome!
+Tried to run breakout with same settings as last time but with self play on gpu set to false. Ram usage seems to be a lot lower? About 32% at start. Alright, 30 minutes are up, it used up about 44% of ram, got to 19544 training steps and played 103 games. Now, time to turn on GPU for self play and try again. Immediately, it started using 57% of RAM. Why does using the GPU make it use more ram? ...Are you for real? The 30 minutes are up, and it's only at 14716 training steps, with only 49 played games?! Wtf??? I got out my fucking stopwatch and decided to let it train to 19000, to see how long it would take. BTW it was using about 60% RAM. Alright, after 9 minutes, it finally caught up and got to 19173 training steps, after playing 62 games. Why is it playing less games? In terms of its performance at the task, I think the one with GPU did better? It seemed to be at a consistently higher mean value, at about .82 by the end, wheras the other one was .54. But I'm not sure if that's really an indicator of its performance.
+So is training with self play on GPU slower?! Why? How? It's using about the same CPU as it uses when it's doing self play on CPU, so how the fuck is it training slower while using more hardware?! I guess from here on out, though, I'll be training on CPU until I can figure out how to make it train faster on GPU.
