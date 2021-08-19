@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d63a9ea-a980-4432-bb9f-9be05822b653" name="Default Changelist" comment="Edited readme slightly.">
-      <change afterPath="$PROJECT_DIR$/Leviathan Logs" afterDir="false" />
+    <list default="true" id="9d63a9ea-a980-4432-bb9f-9be05822b653" name="Default Changelist" comment="Updated readme.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/muzero.py" beforeDir="false" afterPath="$PROJECT_DIR$/muzero.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629401788938</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated readme.">
+      <created>1629412716552</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1629412716552</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,6 +182,7 @@
     <MESSAGE value="Uhh, so this is my first git commit on a personal project ever. Hope it works." />
     <MESSAGE value="First Git commit. Hope it works..." />
     <MESSAGE value="Edited readme slightly." />
-    <option name="LAST_COMMIT_MESSAGE" value="Edited readme slightly." />
+    <MESSAGE value="Updated readme." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated readme." />
   </component>
 </project>

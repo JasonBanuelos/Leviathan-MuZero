@@ -1,7 +1,6 @@
 ![supported platforms](https://img.shields.io/badge/platform-Linux%20%7C%20Mac-929292)
 ![supported python versions](https://img.shields.io/badge/python-%3E%3D%203.6-306998)
 ![dependencies status](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen)
-[![style black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![license MIT](https://img.shields.io/badge/licence-MIT-green)
 
 # Leviathan: MuZero
@@ -14,11 +13,13 @@ I'll update this readme with more information on what I plan to do with this imp
 ## FIXME
 
 * [x] The replay buffer slowly fills up memory, causing the program to break at around 60000 training steps. When it breaks, we lose all training progress. Probably some kind of memory leak? 
-  * Alright, I think I figured out a solution? I changed the replay buffer size in breakout to only 32, and the replay buffer never filled up more than about 2082 MiBs of ram, effectively halting its death by attrition.
-* [ ] When trying to load and train a model that's been through like 30000 training steps from memory, the ram gets filled and the thing gets killed. Lots of ram seems to get filled up as soon as we've loaded the model, before we've even begun training.
-* [ ] When trying to ctrl+c a model that's been training for a while and has almost filled up the ram, the model won't save right, and MuZero will crash and the model will lose all its training progress.
+  * Alright, I think I figured out a solution? I changed the `replay_buffer_size` in breakout to only 32, and the replay buffer never filled up more than about 2082 MiBs of ram, effectively halting its death by attrition.
+* [x] When trying to load and train a model that's been through like 30000 training steps from memory, the ram gets filled and the thing gets killed. Lots of ram seems to get filled up as soon as we've loaded the model, before we've even begun training.
+  * After lowering the `replay_buffer_size` to 32, I was able to save and load the model after about 140000 training steps without a hitch.
+* [x] When trying to ctrl+c a model that's been training for a while and has almost filled up the ram, the model won't save right, and MuZero will crash and the model will lose all its training progress.
+  * As long as the RAM isn't close to being filled up, this isn't a problem.
 * [ ] When training with the same settings as the paper, the thing trains INCREDIBLY slowly. I don't want to compromise, but we may have to for it to be feasible to train this thing.
-* [ ] When the replay_buffer is too large in any game config (e.g. 512 in atari), the program will crash my entire computer after a short period of time while training.
+* [ ] When the `batch_size` is too large in any game config (e.g. 512 in atari), the program will crash my entire computer after a short period of time while training. May be due to my own hardware limitations.
 * [ ] For some god damn reason, it trains SLOWER when self play on GPU is enabled, even though it's using more hardware to train. Seriously, look at Leviathan log 6.
 
 ## TODO
