@@ -4,54 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d63a9ea-a980-4432-bb9f-9be05822b653" name="Default Changelist" comment="I don't think it worked...">
-      <change afterPath="$PROJECT_DIR$/../muzero-general/60000_Step_Crash_Error_Log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/games/atari_shoestring.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari/2021-08-10--11-54-08/events.out.tfevents.1628614463.Leviathan.2449.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari/2021-08-10--11-54-08/events.out.tfevents.1628617517.Leviathan.2449.1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari/2021-08-10--11-54-08/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari/2021-08-16--14-40-27/events.out.tfevents.1629142838.Leviathan.3322.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari/2021-08-16--14-40-27/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari_shoestring/2021-08-16--09-27-09/events.out.tfevents.1629124043.Leviathan.4634.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari_shoestring/2021-08-16--13-42-36/events.out.tfevents.1629139687.Leviathan.2710.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari_shoestring/2021-08-17--09-37-01_batch_size_1/events.out.tfevents.1629211041.Leviathan.3467.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari_shoestring/2021-08-17--11-32-26/events.out.tfevents.1629217964.Leviathan.10546.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari_shoestring/2021-08-17--11-32-26/events.out.tfevents.1629218007.Leviathan.10546.1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari_shoestring/2021-08-17--11-32-26/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari_shoestring/2021-08-17--17-12-14/events.out.tfevents.1629249549.Leviathan.3044.1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/atari_shoestring/2021-08-17--17-12-14/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-10--17-26-20_replay_buffer_size_5000/events.out.tfevents.1628634394.Leviathan.3302.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-10--17-26-20_replay_buffer_size_5000/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-11--13-08-14/events.out.tfevents.1628705324.Leviathan.3713.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-11--13-08-14/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--10-14-25/events.out.tfevents.1628781273.Leviathan.15019.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--10-14-25/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--10-14-25/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--11-42-21/events.out.tfevents.1628786581.Leviathan.19150.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--11-42-21/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--11-49-35/events.out.tfevents.1628786990.Leviathan.19790.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--11-49-35/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--13-24-06/events.out.tfevents.1628792711.Leviathan.2321.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-12--13-24-06/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-18--14-33-00/events.out.tfevents.1629315220.Leviathan.2678.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-18--14-33-00/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-18--14-35-22/events.out.tfevents.1629315337.Leviathan.3833.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-18--14-35-22/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-18--14-47-38/events.out.tfevents.1629316076.Leviathan.2999.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-18--14-47-38/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-18--14-47-38/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-19--10-50-03/events.out.tfevents.1629388249.Leviathan.2434.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/breakout/2021-08-19--10-50-03/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/cartpole/2021-08-06--08-39-39/events.out.tfevents.1628257184.Leviathan.6628.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/cartpole/2021-08-06--08-39-39/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/cartpole/2021-08-06--08-39-39/replay_buffer.pkl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/gridworld/2021-07-25--12-06-42/events.out.tfevents.1627232812.Leviathan.7672.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/gridworld/2021-07-25--12-06-42/model.checkpoint" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../muzero-general/results/gridworld/2021-07-25--12-06-42/replay_buffer.pkl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../muzero-general/games/atari.py" beforeDir="false" afterPath="$PROJECT_DIR$/../muzero-general/games/atari.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../muzero-general/games/breakout.py" beforeDir="false" afterPath="$PROJECT_DIR$/../muzero-general/games/breakout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../muzero-general/games/cartpole.py" beforeDir="false" afterPath="$PROJECT_DIR$/../muzero-general/games/cartpole.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../muzero-general/games/lunarlander.py" beforeDir="false" afterPath="$PROJECT_DIR$/../muzero-general/games/lunarlander.py" afterDir="false" />
+    <list default="true" id="9d63a9ea-a980-4432-bb9f-9be05822b653" name="Default Changelist" comment="First Git commit. Hope it works...">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +26,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../muzero-general" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -91,9 +46,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ChangesTree.GroupingKeys" value="directory" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../muzero-general" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../muzero-general/games/atari.py" />
   </component>
@@ -141,7 +97,28 @@
       <option name="project" value="LOCAL" />
       <updated>1627141470802</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="First Git commit. Hope it works...">
+      <created>1629390810181</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1629390810181</updated>
+    </task>
+    <task id="LOCAL-00003" summary="First Git commit. Hope it works...">
+      <created>1629390883767</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1629390883767</updated>
+    </task>
+    <task id="LOCAL-00004" summary="First Git commit. Hope it works...">
+      <created>1629390913709</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1629390913709</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -152,6 +129,36 @@
             <State />
           </value>
         </entry>
+        <entry key="cbc4326b-4db0-4ba4-8c8f-ac5aeed14408">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="cbc4326b-4db0-4ba4-8c8f-ac5aeed14408" value="TOOL_WINDOW" />
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
@@ -159,6 +166,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Uhh, so this is my first git commit on a personal project ever. Hope it works." />
-    <option name="LAST_COMMIT_MESSAGE" value="Uhh, so this is my first git commit on a personal project ever. Hope it works." />
+    <MESSAGE value="First Git commit. Hope it works..." />
+    <option name="LAST_COMMIT_MESSAGE" value="First Git commit. Hope it works..." />
   </component>
 </project>
