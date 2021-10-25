@@ -7,6 +7,8 @@
 
 Over the course of two or three weeks, I copied [Werner Duvaud's implementation of MuZero](https://github.com/werner-duvaud/muzero-general) line by line, by hand, to pick apart how it works. I had almost no experience with Python before I started copying this code, other than a few beginner Python and PyTorch tutorials that I had gone through. I wrote comments all over this implementation, explaining how it works to the best of my ability. Hopefully the comments are clear enough for other beginners to follow along and read about how this thing works, if they'd like. I also wrote comments on the parts that I didn't understand so I could come back to them later for further study. There are still a few features that I haven't copied yet that I intend to return to later, as they aren't particularly useful to me at the moment. For more information, take a gander at Duvaud's repository on GitHub.
 
+I'm currently planning to make a video presentation to explain the project and its goals. I will put a link to it here as soon as it's ready.
+
 I'll update this readme with more information on what I plan to do with this implementation later. [Here's my latest description of the project.](https://docs.google.com/document/d/19QZMQqhQWLLvkfISsEOnBnU440sNAXr3/edit?usp=sharing&ouid=113065030893762115002&rtpof=true&sd=true)
 
 
