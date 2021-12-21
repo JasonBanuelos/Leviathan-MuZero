@@ -139,7 +139,7 @@ class MuZeroFullyConnectedNetwork(AbstractNetwork):
 
     # The prediction function. I didn't know it was literally a function. Returns the policy network and the value network.
     def prediction(self, encoded_state):
-        policy_logits = self.prediction_policy_network(encoded_state)  # What the FUCK is a logit? Google says "The logit link function is used to model the probability of 'success' as a function of covariates (e.g., logistic regression)."
+        policy_logits = self.prediction_policy_network(encoded_state)  # What's a "logit"? Google says "The logit link function is used to model the probability of 'success' as a function of covariates (e.g., logistic regression)."
         # So I think in this case, policy_logits is the prediction function's policy neural network. I mean, that's what the code looks like.
         value = self.prediction_value_network(encoded_state)  # Similar to above, seems to be the prediction function's value neural network.
         return policy_logits, value

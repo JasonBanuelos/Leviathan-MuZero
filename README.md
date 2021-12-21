@@ -20,12 +20,16 @@ I'll update this readme with more information on what I plan to do with this imp
   * As long as the RAM isn't close to being filled up, this isn't a problem.
 * [ ] When training with the same settings as the paper, the thing trains INCREDIBLY slowly. I don't want to compromise, but we may have to for it to be feasible to train this thing.
 * [ ] When the `batch_size` is too large in any game config (e.g. 512 in atari), the program will crash my entire computer after a short period of time while training. May be due to my own hardware limitations.
-* [ ] For some god damn reason, it trains SLOWER when self play on GPU is enabled, even though it's using more hardware to train. Seriously, look at Leviathan log 6.
+* [ ] For some reason, it trains SLOWER when self play on GPU is enabled, even though it's using more hardware to train. Seriously, look at Leviathan log 6.
 
 ## TODO
 
-* [ ] Figure out Leviathan's terminal.
-* [ ] Figure out Leviathan's web browser.
+* [ ] Finish presentation.
+* [ ] Learn about terminal emulators.
+
+## EXPERIMENT QUESTIONS
+
+* [ ] If you train a model, then change the config file of the game, then try to load and train the same model with different config settings, what happens? E.g. If I use a replay buffer size of 32, but change it to be bigger, and then load the same model and try to train it, will it start using the new settings or will it use the old settings? Will it even work at all?
 
 # Duvaud's Original Readme
 

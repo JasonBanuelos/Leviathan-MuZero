@@ -3,8 +3,10 @@ Find the sum of 1 and 2.
 Find a sum resulting in 5.
 Find the product of 3 and 2.
 Find 5 to the 5th power.
-Find 5 squared.
+Find 5 squared. # Here it needs to find out that squared is another term for 5 to the 2nd power. It already has experience with exponents, it just needs to put two and two together.
 Exit python.
-Exit python and list the files and folders in your linux terminal's current directory.
+Exit python and list the files and directories in your linux terminal's current working directory.
+Exit python and print your current working directory.
+# Perhaps we should have a test where it needs to infer that it needs to use a linux command that it hasn't used yet.
 Exit python and change the current working directory to the directory named muzero-general.
 Exit python, list the files and folders in your linux terminal's current directory, and enter the first folder that is listed.

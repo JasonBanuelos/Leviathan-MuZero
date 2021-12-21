@@ -1,8 +1,14 @@
-Log Entry 1 - 8/10/21 - Yesterday I adjusted the replay buffer size to 32000 in breakout to try to fix the crashing, but it still crashed at ~60k training steps, and once again didn't save any training progress. Plasma did not fill up like before, though, only filled up to ~2472, about 60% of the max. I suppose that isn't the problem, then. Deleted all previous results for atari and breakout to avoid confusion. Just tried to train muzero-general to play atari with reanalyze on, selfplay_on_gpu on, and replay buffer size set to 32000, but as soon as I hit enter, my computer lagged hard, and eventually the program stopped and I got a message that simply said "Killed", with no other information. Also, a minute or two later, a pop up came up, telling me Python closed unexpectedly and taht my computer doesn't have enough free memory to anlayze the problem. So I'm thinking the bottleneck is still memory, and looking at the system monitor, I think the replay buffer may still have somethign to do with it. I think I'll wait until the end of the day to make logs so they don't get this long and bloated. On atari.py, I lowered the number of workers to just 1 because 350 broke my computer. Not sure if replay buffer is our bottleneck, since it didn't seem to use that much ram while running. I also lowered the batch size to 4 since I didn't want to wait forever for it to complete a single training step. Tried to lower the batch size to 1, and it completed 8 training steps from that?! I thought it would be 1 game for every 1 step. But then it got to 3 games, and it was still at 8 training steps. ??? I'm not sure if we should try to design our own custom browser for this thing or just use selenium with firefox or whatever, but I tested it, and it IS possible to use firefox with only a keyboard. Could it be possible to give this thing it's own entire vitual machine with both a keyboard and mouse? That might make it too difficult, though, for it to learn basic programming and web searching and fucking english, you know? Then it got up to 9 played games with 8 training steps still, and I shut it down. Well, I tried lowering the replay buffer size of breakout to 5000, but the plasma filled up and it still broke. However, I DID leave reanalyze on, so maybe if I shut that off and try again tomorrow it will work. The first error that came up on the terminal had to do with reanalyze
+I WOULD HIGHLY RECOMMEND YOU OPEN THIS WITH NOTEPAD++ OR SOMETHING
 
+-----
 
-Log Entry 2 - 8/11/21 - Neither subprocess nor os.subsystem will be useful to create our virtual terminal. Reanalyze seems to fill up the plasma, as the plasma was barely filled up at all after I turned reanalyze off, with the rest of the settings the same as yesterday. Oh shit, I accidentally hit F12 in the terminal. I hope that doesn't fuck it up. Holy shit, it got to 60000! And... then it crashed. Fuck. But I'm almost certain the bottleneck is ram, now. I copied the error log, hopefully we can figure this out. I wonder, if I saved it part of the way through training, would we eventually be able to get to a million? Emailed some professors about making a browser and terminal, got back from a couple of them, one gave me the contact info of an AIRG nerd, I'll hit him up.
+Log Entry 1 - 8/10/21 - Yesterday I adjusted the replay buffer size to 32000 in breakout to try to fix the crashing, but it still crashed at ~60k training steps, and once again didn't save any training progress. Plasma did not fill up like before, though, only filled up to ~2472, about 60% of the max. I suppose that isn't the problem, then. Deleted all previous results for atari and breakout to avoid confusion. Just tried to train muzero-general to play atari with reanalyze on, selfplay_on_gpu on, and replay buffer size set to 32000, but as soon as I hit enter, my computer lagged hard, and eventually the program stopped and I got a message that simply said "Killed", with no other information. Also, a minute or two later, a pop up came up, telling me Python closed unexpectedly and taht my computer doesn't have enough free memory to anlayze the problem. So I'm thinking the bottleneck is still memory, and looking at the system monitor, I think the replay buffer may still have somethign to do with it. I think I'll wait until the end of the day to make logs so they don't get this long and bloated. On atari.py, I lowered the number of workers to just 1 because 350 broke my computer. Not sure if replay buffer is our bottleneck, since it didn't seem to use that much ram while running. I also lowered the batch size to 4 since I didn't want to wait forever for it to complete a single training step. Tried to lower the batch size to 1, and it completed 8 training steps from that?! I thought it would be 1 game for every 1 step. But then it got to 3 games, and it was still at 8 training steps. ??? I'm not sure if we should try to design our own custom browser for this thing or just use selenium with firefox or whatever, but I tested it, and it IS possible to use firefox with only a keyboard. Could it be possible to give this thing it's own entire vitual machine with both a keyboard and mouse? That might make it too difficult, though, for it to learn basic programming and web searching and english, you know? Then it got up to 9 played games with 8 training steps still, and I shut it down. Well, I tried lowering the replay buffer size of breakout to 5000, but the plasma filled up and it still broke. However, I DID leave reanalyze on, so maybe if I shut that off and try again tomorrow it will work. The first error that came up on the terminal had to do with reanalyze
 
+-----
+
+Log Entry 2 - 8/11/21 - Neither subprocess nor os.subsystem will be useful to create our virtual terminal. Reanalyze seems to fill up the plasma, as the plasma was barely filled up at all after I turned reanalyze off, with the rest of the settings the same as yesterday. Uh oh, I accidentally hit F12 in the terminal. I hope that doesn't mess it up. Hey, it got to 60000! And... then it crashed. But I'm almost certain the bottleneck is ram, now. I copied the error log, hopefully we can figure this out. I wonder, if I saved it part of the way through training, would we eventually be able to get to a million? Emailed some professors about making a browser and terminal, got back from a couple of them, one gave me the contact info of an AIRG guy, I'll hit him up.
+
+-----
 
 Log Entry 3 - 8/12/21 - Ran breakout with same settings as yesterday. Hit ctrl-c it at about 38000 training steps. For some reason, a self play worker was still running after, don't know why, took a screenshot of it. It closed when I closed muzero. Restarted muzero, loaded the model, told it to train, and the computer froze up for a bit. Ram hit 100%, took a screenshot of it, but then it started to work. For some reason, though, it was killed, and the replay buffer and a self play worker were still running and using like 60% ram even though muzero was totally dead. Loaded and ran model again. Froze my computer for several minutes, then got a killed message. Multiple self plays, trainers, and other things still running in the background, still using like 80% of ram. Only way to get rid of it is to restart my computer. Even after restarting, though, loading the model and training it still causes it get killed, and the memory still gets stuck at 60%.
 
@@ -187,7 +193,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torch.optim as optim
+import torch.optim as optimimport re
 import torch.autograd as autograd
 import torch.autograd.function as function
 
@@ -207,8 +213,9 @@ import torch.distributions.transforms as transform
 
 Holy fucking shit. OpenAI just released an awesome new language model that's specifically designed to generate code, and I just got to play with it. I submitted applications to get access to the model's API, let's hope we get lucky!
 
+-----
 
-Log Entry 4 - 8/16/21 - Tried to copy Julian's recommended MuZero "shoestring" settings with atari, which I saved as a separate config file called "atari_shoestring", but my computer crashed in the middle of training. GPU was steaming hot (or was it?), fans were louder than when playing Cyberdunk. Tried to run it again after letting the computer cool off, with the same setting, this time keeping an eye on the terminal and the GPU temp to try to find the source of the problem. Got an error in the middle of running it, but I think that it may have been just a problem with ray, and I checked rays logs, and the same error appeared there as in the terminal. I copied the error below. Not sure if this had anything to do with the GPU going crazy. Based on info from ray dashboard, the problem seems to have originated from the trainer. Oh yeah, and the error says that too, I guess. Shit, the computer crashed again. But this time, I got a look at the GPU temp, and surprisingly it was only around 79°C. For some reason, when the screen shut off, the GPU fans starting spinning like mad, even though they weren't before. Perhaps the problem with the fans has something to do with the motherboard not liking it when the computer crashes, but it seems like the GPU overheating may not be the source of the problem. Didn't even finish a single training step before it crashed, although it did finish playing some games.
+Log Entry 4 - 8/16/21 - Tried to copy Julian's recommended MuZero "shoestring" settings with atari, which I saved as a separate config file called "atari_shoestring", but my computer crashed in the middle of training. GPU was steaming hot (or was it?), fans were louder than when playing Cyberdunk. Tried to run it again after letting the computer cool off, with the same setting, this time keeping an eye on the terminal and the GPU temp to try to find the source of the problem. Got an error in the middle of running it, but I think that it may have been just a problem with ray, and I checked rays logs, and the same error appeared there as in the terminal. I copied the error below. Not sure if this had anything to do with the GPU going crazy. Based on info from ray dashboard, the problem seems to have originated from the trainer. Oh yeah, and the error says that too, I guess. Unfortunately, the computer crashed again. But this time, I got a look at the GPU temp, and surprisingly it was only around 79°C. For some reason, when the screen shut off, the GPU fans starting spinning like mad, even though they weren't before. Perhaps the problem with the fans has something to do with the motherboard not liking it when the computer crashes, but it seems like the GPU overheating may not be the source of the problem. Didn't even finish a single training step before it crashed, although it did finish playing some games.
 
 2021-08-16 13:49:53,716 ERROR worker.py:78 -- Unhandled error (suppress with RAY_IGNORE_UNHANDLED_ERRORS=1): ray::Trainer.continuous_update_weights() (pid=3247, ip=192.168.1.95)
   File "python/ray/_raylet.pyx", line 501, in ray._raylet.execute_task
@@ -277,6 +284,7 @@ ray.exceptions.RayTaskError(ValueError): ray::ReplayBuffer.get_batch() (pid=3468
   File "mtrand.pyx", line 928, in numpy.random.mtrand.RandomState.choice
 ValueError: probabilities contain NaN
 
+-----
 
 Log Entry 5 - 8/17/21 - Tried running atari_shoestring again, this time I bumped down the batch_size from 512 to 1. Got the following error message, but at least this time it finished playing a couple of games and got in some training steps. Ok, that seems to have solved the problem. I let it run for over an hour, and it didn't crash, and it didn't get above a gpu temp of 80. It still didn't get very far in training, though, only 10 training steps and 150 played games. Also it said the loss was nan for some reason. So why did the batch size cause it to crash?
 
@@ -301,7 +309,7 @@ ray.exceptions.RayTaskError(ValueError): ray::ReplayBuffer.get_batch() (pid=3637
   File "mtrand.pyx", line 928, in numpy.random.mtrand.RandomState.choice
 ValueError: probabilities contain NaN
 
-Idea I just had: since for some reason trainig steps can go from 0 to 10 after playing like 1 game, perhaps what's slowing us down is the tree search? Or the neural nets taking their time to decide which moves are best. Basically, playing the games seems to take way more time than training. So perhaps if we cut down the number of simulations or something, we can train this thing faster without sacrificing too much of the agent's smartness.
+Idea I just had: since for some reason training steps can go from 0 to 10 after playing like 1 game, perhaps what's slowing us down is the tree search? Or the neural nets taking their time to decide which moves are best. Basically, playing the games seems to take way more time than training. So perhaps if we cut down the number of simulations or something, we can train this thing faster without sacrificing too much of the agent's smartness.
 
 Uh oh. You know how this thing usually crashes at around 60000 training steps because the replay buffer fills up the ram? Well, I noticed the replay buffer was filling up again, just like before, but this time it was filling up even though the training steps were still low. I hit ctr+c at ONLY 10 training steps, with 150 games played, after it had fill up like 80% of the ram (firefox was open, so about 90% of the ram was being used). It had a hard time shutting down and I think it broke a bit because it didn't take me to the MuZero menu. It gave me the following error after I shut it down. This means that it's not crashing because of the number of training steps, but rather because, no matter what, the replay buffer fills up the ram after running for a certain length of time. It's gotta be some kind of memory leak caused by the replay buffer, just gotta find the cause.
 
@@ -361,11 +369,124 @@ Traceback (most recent call last):
   File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
 AttributeError: 'NoneType' object has no attribute 'global_worker'
 
-Shit. I just loaded the model from disk, and it lost all its training progress. Oh well, added that to the FIXME in the Leviathan-MuZero readme.
+Oh no. I just loaded the model from disk, and it lost all its training progress. Oh well, added that to the FIXME in the Leviathan-MuZero readme.
 
 Wait, did I just solve the problem? So I turned the replay buffer size down to like 32, and accidentally let the thing train for like 3 hours. Unfortunately I forgot to check how full the replay buffer was before I hit ctrl-c. I reloaded the model, though, and it was at 2177.9 MiB when I loaded it. It got to training step 9 and game 268, and when I reloaded it, it got to training step 18 and game 273. I'll try loading it again tomorrow to see if the replay buffer is still that large.
 
+-----
 
 Log Entry 6 - 8/19/21 - Alright, I think I fixed the replay buffer ram attrition problem! Or at least figured out a workaround. I set the replay buffer size to only 32 in breakout, and the replay buffer never got over around 2080 MiBs, and it got to 140430 training steps, having played 409 games! I hit ctrl+c, and it saved and quit without a hitch! Awesome!
-Tried to run breakout with same settings as last time but with self play on gpu set to false. Ram usage seems to be a lot lower? About 32% at start. Alright, 30 minutes are up, it used up about 44% of ram, got to 19544 training steps and played 103 games. Now, time to turn on GPU for self play and try again. Immediately, it started using 57% of RAM. Why does using the GPU make it use more ram? ...Are you for real? The 30 minutes are up, and it's only at 14716 training steps, with only 49 played games?! Wtf??? I got out my fucking stopwatch and decided to let it train to 19000, to see how long it would take. BTW it was using about 60% RAM. Alright, after 9 minutes, it finally caught up and got to 19173 training steps, after playing 62 games. Why is it playing less games? In terms of its performance at the task, I think the one with GPU did better? It seemed to be at a consistently higher mean value, at about .82 by the end, wheras the other one was .54. But I'm not sure if that's really an indicator of its performance.
-So is training with self play on GPU slower?! Why? How? It's using about the same CPU as it uses when it's doing self play on CPU, so how the fuck is it training slower while using more hardware?! I guess from here on out, though, I'll be training on CPU until I can figure out how to make it train faster on GPU.
+Tried to run breakout with same settings as last time but with self play on gpu set to false. Ram usage seems to be a lot lower? About 32% at start. Alright, 30 minutes are up, it used up about 44% of ram, got to 19544 training steps and played 103 games. Now, time to turn on GPU for self play and try again. Immediately, it started using 57% of RAM. Why does using the GPU make it use more ram? ...Are you for real? The 30 minutes are up, and it's only at 14716 training steps, with only 49 played games?! I got out my stopwatch and decided to let it train to 19000, to see how long it would take. BTW it was using about 60% RAM. Alright, after 9 minutes, it finally caught up and got to 19173 training steps, after playing 62 games. Why is it playing less games? In terms of its performance at the task, I think the one with GPU did better? It seemed to be at a consistently higher mean value, at about .82 by the end, wheras the other one was .54. But I'm not sure if that's really an indicator of its performance.
+So is training with self play on GPU slower?! Why? How? It's using about the same CPU as it uses when it's doing self play on CPU, so how is it training slower while using more hardware?f! I guess from here on out, though, I'll be training on CPU until I can figure out how to make it train faster on GPU.
+
+-----
+
+Log Entry 7 - 8/22/21 - Ok, I set breakout to all the default settings and left it for a few hours. I got back, and it was at about 64000 training steps. I opened up firefox to see how much ram it was using, and it suddenly crashed. I briefly got a glimpse at the processes tab of the system monitor, and something(?) was using 10 gigs of ram?? Unfortunately I didn't get a good look before it crashed, but I did see on the Resources tab of the system monitor that it was using 100% of ram before it crashed. Oh! I just looked at ray dashboard, and it apparently updated before MuZero crashed, and it was using 95% of RAM, with the replay buffer using a whopping 10471.8 MiB. I'll change the replay buffer size back down to 32 or something and give it another go, but now we know that turning self_play_on_GPU on doesn't somehow create a RAM bottleneck. I copied the error log below. It was only using 40% cpu, so perhaps we could use a few more workers so it will train faster or something. It was using barely any gpu, of course, only 20%. I'll have to see if there's a way we can manipulate the number of workers or whatever so that we can use as much GPU and CPU as possible and actually speed up the training as much as possible. 
+
+(pid=3808) 2021-08-22 11:43:13,798tep: 6ERROR worker.py:78 -- Unhandled error (suppress with RAY_IGNORE_UNHANDLED_ERRORS=1): ray::ReplayBuffer.update_priorities() (pid=3806, ip=192.168.1.95)
+(pid=3808)   File "python/ray/_raylet.pyx", line 458, in ray._raylet.execute_task
+(pid=3808)   File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/memory_monitor.py", line 139, in raise_if_low_memory
+(pid=3808)     raise RayOutOfMemoryError(
+(pid=3808) ray._private.memory_monitor.RayOutOfMemoryError: More than 95% of the memory on node Leviathan is used (14.81 / 15.58 GB). The top 10 memory consumers are:
+(pid=3808) 
+(pid=3808) PID	MEM	COMMAND
+(pid=3808) 3806	10.13GiB	ray::ReplayBuffer
+(pid=3808) 3808	2.04GiB	ray::Trainer.continuous_update_weights()
+(pid=3808) 3665	0.27GiB	python3 muzero.py
+(pid=3808) 5443	0.22GiB	/usr/lib/firefox/firefox -new-window
+(pid=3808) 3800	0.2GiB	ray::SelfPlay.continuous_self_play()
+(pid=3808) 2436	0.18GiB	/usr/bin/gnome-shell
+(pid=3808) 3802	0.16GiB	ray::SelfPlay.continuous_self_play()
+(pid=3808) 2733	0.09GiB	/snap/snap-store/547/usr/bin/snap-store --gapplication-service
+(pid=3808) 3810	0.09GiB	ray::SharedStorage
+(pid=3808) 3717	0.08GiB	/usr/bin/python3 -u /home/jason/.local/lib/python3.8/site-packages/ray/new_dashboard/dashboard.py --
+(pid=3808) 
+(pid=3808) In addition, up to 0.11 GiB of shared memory is currently being used by the Ray object store.
+(pid=3808) ---
+(pid=3808) --- Tip: Use the `ray memory` command to list active objects in the cluster.
+(pid=3808) --- To disable OOM exceptions, set RAY_DISABLE_MEMORY_MONITOR=1.
+(pid=3808) ---
+(pid=3808) 2021-08-22 11:43:14,857tep: 6ERROR worker.py:78 -- Unhandled error (suppress with RAY_IGNORE_UNHANDLED_ERRORS=1): ray::ReplayBuffer.update_priorities() (pid=3806, ip=192.168.1.95)
+(pid=3808)   File "python/ray/_raylet.pyx", line 458, in ray._raylet.execute_task
+(pid=3808)   File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/memory_monitor.py", line 139, in raise_if_low_memory
+(pid=3808)     raise RayOutOfMemoryError(
+(pid=3808) ray._private.memory_monitor.RayOutOfMemoryError: More than 95% of the memory on node Leviathan is used (14.85 / 15.58 GB). The top 10 memory consumers are:
+(pid=3808) 
+(pid=3808) PID	MEM	COMMAND
+(pid=3808) 3806	10.16GiB	ray::ReplayBuffer
+(pid=3808) 3808	2.04GiB	ray::Trainer.continuous_update_weights()
+(pid=3808) 3665	0.27GiB	python3 muzero.py
+(pid=3808) 3800	0.23GiB	ray::SelfPlay.continuous_self_play()
+(pid=3808) 5443	0.19GiB	/usr/lib/firefox/firefox -new-window
+(pid=3808) 2436	0.18GiB	/usr/bin/gnome-shell
+(pid=3808) 3802	0.16GiB	ray::SelfPlay.continuous_self_play()
+(pid=3808) 3810	0.09GiB	ray::SharedStorage
+(pid=3808) 3717	0.08GiB	/usr/bin/python3 -u /home/jason/.local/lib/python3.8/site-packages/ray/new_dashboard/dashboard.py --
+(pid=3808) 3770	0.07GiB	/usr/bin/python3 -u /home/jason/.local/lib/python3.8/site-packages/ray/new_dashboard/agent.py --node
+(pid=3808) 
+(pid=3808) In addition, up to 0.11 GiB of shared memory is currently being used by the Ray object store.
+(pid=3808) ---
+(pid=3808) --- Tip: Use the `ray memory` command to list active objects in the cluster.
+(pid=3808) --- To disable OOM exceptions, set RAY_DISABLE_MEMORY_MONITOR=1.
+(pid=3808) ---
+Traceback (most recent call last):
+  File "muzero.py", line 643, in <module>
+    muzero.train()
+  File "muzero.py", line 196, in train
+    self.logging_loop(
+  File "muzero.py", line 257, in logging_loop
+    info = ray.get(self.shared_storage_worker.get_info.remote(keys))
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/client_mode_hook.py", line 62, in wrapper
+    return func(*args, **kwargs)
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/worker.py", line 1494, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(RayOutOfMemoryError): ray::SharedStorage.get_info() (pid=3810, ip=192.168.1.95)
+  File "python/ray/_raylet.pyx", line 458, in ray._raylet.execute_task
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/_private/memory_monitor.py", line 139, in raise_if_low_memory
+    raise RayOutOfMemoryError(
+ray._private.memory_monitor.RayOutOfMemoryError: More than 95% of the memory on node Leviathan is used (14.86 / 15.58 GB). The top 10 memory consumers are:
+
+PID	MEM	COMMAND
+3806	10.15GiB	ray::ReplayBuffer
+3808	2.04GiB	ray::Trainer.continuous_update_weights()
+3665	0.27GiB	python3 muzero.py
+3800	0.23GiB	ray::SelfPlay.continuous_self_play()
+5443	0.19GiB	/usr/lib/firefox/firefox -new-window
+2436	0.18GiB	/usr/bin/gnome-shell
+3802	0.16GiB	ray::SelfPlay.continuous_self_play()
+3810	0.09GiB	ray::SharedStorage
+3717	0.08GiB	/usr/bin/python3 -u /home/jason/.local/lib/python3.8/site-packages/ray/new_dashboard/dashboard.py --
+3770	0.07GiB	/usr/bin/python3 -u /home/jason/.local/lib/python3.8/site-packages/ray/new_dashboard/agent.py --node
+
+In addition, up to 0.11 GiB of shared memory is currently being used by the Ray object store.
+---
+--- Tip: Use the `ray memory` command to list active objects in the cluster.
+--- To disable OOM exceptions, set RAY_DISABLE_MEMORY_MONITOR=1.
+---
+Exception ignored in: <function ActorHandle.__del__ at 0x7fd333617e50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+Exception ignored in: <function ActorHandle.__del__ at 0x7fd333617e50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+Exception ignored in: <function ActorHandle.__del__ at 0x7fd333617e50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+Exception ignored in: <function ActorHandle.__del__ at 0x7fd333617e50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+Exception ignored in: <function ActorHandle.__del__ at 0x7fd333617e50>
+Traceback (most recent call last):
+  File "/home/jason/.local/lib/python3.8/site-packages/ray/actor.py", line 823, in __del__
+AttributeError: 'NoneType' object has no attribute 'global_worker'
+
+Adam in 30 mins: Training step: 17676, Played games: 76. SGD in 30 mins: Training step: 19469, Played games: 108. SGD got FARTHER than adam?! How is that possible? I mean, I'm not complaining, but I just don't understand...
+
+-----
+
+Log Entry 6 - 12/21/21 - WE'RE FINALLY DONE WITH THE NIGHTMARE OF LAST SEMESTER! I wanted so badly to work on this project, but the classes this semester we're so brutal I barely had any time to get groceries, let alone work on this project. But we're back! Now let's get down to business.
+After getting back from vacation, I've been working on a video presentation for the past few days to explain this project and what it's all about, and explain the contributions to the field that I intend to make with it. Once it's done I'm going to actually get back to coding this thing.
